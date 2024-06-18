@@ -12,6 +12,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
 import com.example.caloriecounterapp.databinding.ActivityMainBinding
 import com.example.caloriecounterapp.ui.addmeal.AddMealFragment
 
@@ -37,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.appBarMain.toolbar)
 
         binding.appBarMain.fab.setOnClickListener { view ->
-            OpenAddMealFragment()
+            val navController = findNavController(R.id.nav_host_fragment_content_main)
+            navController.navigate(R.id.nav_add_meal)
         }
 
         val drawerLayout: DrawerLayout = binding.drawerLayout

@@ -16,10 +16,10 @@
             android:id="@+id/textViewDayOfWeek"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/monday"
-            android:textSize="34sp"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,21 +29,20 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:textSize="34sp"
+            android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/textViewDayOfWeek"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/sample_date" />
+            android:text="@string/sample_date" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="409dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/testViewDate" >
+            app:layout_constraintTop_toBottomOf="@+id/testViewDate">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -54,9 +53,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:text="@string/meal_name"
-                    android:textSize="34sp"
+                    android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -66,9 +65,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:text="@string/meal_description"
-                    android:textSize="34sp"
+                    android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textViewMealName" />
 
@@ -77,9 +76,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:text="@string/label_calories"
-                    android:textSize="34sp"
+                    android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textViewMealDescription" />
@@ -88,10 +87,10 @@
                     android:id="@+id/textViewCalorieCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:ems="10"
                     android:text="@string/calorie_count"
-                    android:textSize="34sp"
+                    android:textSize="24sp"
                     app:layout_constraintStart_toEndOf="@+id/textViewCalories"
                     app:layout_constraintTop_toBottomOf="@+id/textViewMealDescription" />
 

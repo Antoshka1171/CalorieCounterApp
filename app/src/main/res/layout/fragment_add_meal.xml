@@ -14,35 +14,68 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/my_meal_label"
             android:textColor="@color/purple_700"
             android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="88dp"
-            android:layout_height="60dp"
+            android:layout_width="110dp"
+            android:layout_height="96dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
             android:src="@drawable/ic_menu_camera"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinnerMealType"
+            android:layout_width="386dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:entries="@array/meal_names_array"
+            android:theme="@style/Style.CalorieCounterApp.Spinner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-        <Spinner
-            android:id="@+id/spinnerMealType"
-            android:layout_width="409dp"
+        <EditText
+            android:id="@+id/editTextMealDescription"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:entries="@array/meal_names_array"
+            android:ems="10"
+            android:hint="@string/meal_prompt"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+            app:layout_constraintTop_toBottomOf="@+id/spinnerMealType" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="390dp"
+            android:layout_height="89dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Add Generated Response"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextMealDescription" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -22,4 +22,8 @@
     <style name="Theme.CalorieCounterApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.CalorieCounterApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Style.CalorieCounterApp.Spinner" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textSize">24sp</item>
+    </style>
 </resources>
