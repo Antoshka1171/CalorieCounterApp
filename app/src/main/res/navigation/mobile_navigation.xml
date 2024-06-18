@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_nav_home_to_nav_add_meal"
             app:destination="@id/nav_add_meal" />
+        <action
+            android:id="@+id/action_nav_home_to_permissionsFragment"
+            app:destination="@id/permissionsFragment" />
     </fragment>
 
     <fragment
@@ -31,4 +34,12 @@
         android:name="com.example.caloriecounterapp.ui.addmeal.AddMealFragment"
         android:label="fragment_add_meal_select_way"
         tools:layout="@layout/fragment_add_meal" />
+    <fragment
+        android:id="@+id/permissionsFragment"
+        android:name="com.example.caloriecounterapp.ui.photo.PermissionsFragment"
+        android:label="PermissionsFragment" >
+        <action
+            android:id="@+id/action_permissionsFragment_to_nav_slideshow"
+            app:destination="@id/nav_home" />
+    </fragment>
 </navigation>

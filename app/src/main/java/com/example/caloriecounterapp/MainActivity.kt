@@ -21,14 +21,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
-    internal fun OpenAddMealFragment() {
-        val fragment = AddMealFragment.newInstance()
-        val transaction = supportFragmentManager.beginTransaction()
-        //transaction.replace(R.id.container_layout, fragment).commit()
-        transaction.replace(R.id.nav_add_meal, fragment);
-        transaction.commit()
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -37,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
-        binding.appBarMain.fab.setOnClickListener { view ->
+        binding.appBarMain.fab.setOnClickListener { _ ->
             val navController = findNavController(R.id.nav_host_fragment_content_main)
             navController.navigate(R.id.nav_add_meal)
         }
@@ -54,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        navController.navigate(R.id.action_nav_home_to_permissionsFragment)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -66,4 +59,5 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
 }
