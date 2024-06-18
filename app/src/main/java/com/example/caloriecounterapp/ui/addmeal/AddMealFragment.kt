@@ -26,7 +26,7 @@ class AddMealFragment : Fragment() , CoroutineScope {
         fun newInstance() = AddMealFragment()
     }
 
-    //private var aiModel = GenerativeAIModel()
+    private var aiModel = GenerativeAIModel()
     private var _binding: FragmentAddMealBinding? = null
 
     // This property is only valid between onCreateView and
@@ -51,7 +51,8 @@ class AddMealFragment : Fragment() , CoroutineScope {
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE && data != null){
             photoBitmap = (data.extras?.get("data") as Bitmap)
             lifecycleScope.launch {
-                //val result =  aiModel.ProvideCalorieEstimationFromPhoto(photoBitmap!!)
+                val result =  aiModel.ProvideCalorieEstimationFromPhoto(photoBitmap!!)
+                binding.textViewResponse.text = result
             }
         }
     }
