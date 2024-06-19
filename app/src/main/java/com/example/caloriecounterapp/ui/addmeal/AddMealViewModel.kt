@@ -8,6 +8,10 @@ class AddMealViewModel : ViewModel() {
     private val _mealDescription = MutableLiveData<String>().apply {
         value = ""
     }
+    private val _response = MutableLiveData<String>().apply {
+        value = ""
+    }
 
     val mealDescription: LiveData<String> = _mealDescription
+    val response: LiveData<String> = _response
 }

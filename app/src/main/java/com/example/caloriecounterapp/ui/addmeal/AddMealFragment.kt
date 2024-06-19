@@ -10,9 +10,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.example.caloriecounterapp.R
 import com.example.caloriecounterapp.databinding.FragmentAddMealBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -46,19 +50,25 @@ class AddMealFragment : Fragment() , CoroutineScope {
         get() = Dispatchers.Main + job
 
     internal var photoBitmap : Bitmap? = null;
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE && data != null){
             photoBitmap = (data.extras?.get("data") as Bitmap)
             lifecycleScope.launch {
                 val result =  aiModel.ProvideCalorieEstimationFromPhoto(photoBitmap!!)
-                binding.textViewResponse.text = result
+
+                //binding.textViewResponse.text = result
+                //val numberCal = aiModel.ProvideCalorieEstimationNumber(result)
+                binding.textViewResponse.text = result.first
             }
         }
     }
 
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val viewModel =
@@ -68,6 +78,7 @@ class AddMealFragment : Fragment() , CoroutineScope {
         val root: View = binding.root
 
         val textViewResponse = binding.textViewResponse
+
         viewModel.mealDescription.observe(viewLifecycleOwner) {
             textViewResponse.text = it
         }
@@ -75,6 +86,20 @@ class AddMealFragment : Fragment() , CoroutineScope {
         binding.imageButton.setOnClickListener {
             capturePhoto()
         }
+
+        val editText: EditText = binding.editTextMealDescription
+        val descriptionButton: ImageButton = binding.generateDescriptionButon
+
+        descriptionButton.setOnClickListener {
+            lifecycleScope.launch {
+                val resultDescription = aiModel.ProvideCalorieEstimation(editText.getText().toString())
+                //binding.textViewResponse.text = resultDescription
+                val numberCal: Int? = aiModel.ProvideCalorieEstimationNumber(editText.getText().toString())
+                binding.textViewResponse.text = numberCal.toString()
+            }
+
+        }
+
 
         return root
     }

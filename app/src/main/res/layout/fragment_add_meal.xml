@@ -51,22 +51,20 @@
 
         <EditText
             android:id="@+id/editTextMealDescription"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="340dp"
+            android:layout_height="47dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:ems="10"
             android:hint="@string/meal_prompt"
             android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnerMealType" />
 
         <TextView
             android:id="@+id/textViewResponse"
-            android:layout_width="390dp"
-            android:layout_height="89dp"
+            android:layout_width="386dp"
+            android:layout_height="114dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -75,6 +73,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextMealDescription" />
+
+        <ImageButton
+            android:id="@+id/generateDescriptionButon"
+            android:layout_width="55dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:src="@android:drawable/checkbox_on_background"
+            app:layout_constraintStart_toEndOf="@+id/editTextMealDescription"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerMealType" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
