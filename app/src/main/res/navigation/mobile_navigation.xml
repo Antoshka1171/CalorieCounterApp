@@ -33,7 +33,14 @@
         android:id="@+id/nav_add_meal"
         android:name="com.example.caloriecounterapp.ui.addmeal.AddMealFragment"
         android:label="fragment_add_meal_select_way"
-        tools:layout="@layout/fragment_add_meal" />
+        tools:layout="@layout/fragment_add_meal" >
+        <action
+            android:id="@+id/action_nav_add_meal_to_nav_home"
+            app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/save_meal"
+            app:destination="@id/nav_home" />
+    </fragment>
     <fragment
         android:id="@+id/permissionsFragment"
         android:name="com.example.caloriecounterapp.ui.photo.PermissionsFragment"

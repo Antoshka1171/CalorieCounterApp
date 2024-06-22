@@ -3,19 +3,19 @@ package com.example.caloriecounterapp.ui.addmeal
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
-import androidx.fragment.app.viewModels
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
+import com.example.caloriecounterapp.MealModel
 import com.example.caloriecounterapp.R
 import com.example.caloriecounterapp.databinding.FragmentAddMealBinding
 import kotlinx.coroutines.CoroutineScope
@@ -23,6 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
+
 
 class AddMealFragment : Fragment() , CoroutineScope {
 
@@ -46,10 +47,20 @@ class AddMealFragment : Fragment() , CoroutineScope {
     }
 
     private var job: Job = Job()
+    var mealModel = MealModel()
+
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
     internal var photoBitmap : Bitmap? = null;
+
+    internal fun savePressed() {
+        val mealType = binding.spinnerMealType.selectedItem
+        println(mealType)
+
+        val controller = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main)
+        controller.navigateUp()
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -57,10 +68,11 @@ class AddMealFragment : Fragment() , CoroutineScope {
             photoBitmap = (data.extras?.get("data") as Bitmap)
             lifecycleScope.launch {
                 val result =  aiModel.ProvideCalorieEstimationFromPhoto(photoBitmap!!)
-
                 //binding.textViewResponse.text = result
-                //val numberCal = aiModel.ProvideCalorieEstimationNumber(result)
+                //val numberCal = aiModel.ProvideCalorieEstimationFromPhoto(photoBitmap!!)
                 binding.textViewResponse.text = result.first
+                mealModel.mealDescription = result.first
+                mealModel.mealCalories = result.second
             }
         }
     }
@@ -71,6 +83,9 @@ class AddMealFragment : Fragment() , CoroutineScope {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        //val result = binding.spinnerMealType.getSelectedView().text.toString()
+
         val viewModel =
             ViewModelProvider(this).get(AddMealViewModel::class.java)
 
@@ -92,17 +107,26 @@ class AddMealFragment : Fragment() , CoroutineScope {
 
         descriptionButton.setOnClickListener {
             lifecycleScope.launch {
-                val resultDescription = aiModel.ProvideCalorieEstimation(editText.getText().toString())
+                //val resultDescription = aiModel.ProvideCalorieEstimation(editText.getText().toString())
                 //binding.textViewResponse.text = resultDescription
-                val numberCal: Int? = aiModel.ProvideCalorieEstimationNumber(editText.getText().toString())
-                binding.textViewResponse.text = numberCal.toString()
-            }
 
+                mealModel.mealDescription = editText.getText().toString()
+
+                val numberCal: Int? = aiModel.ProvideCalorieEstimationNumber(mealModel.mealDescription)
+                mealModel.mealCalories = numberCal!!
+
+                binding.textViewResponse.text = mealModel.mealCalories.toString()
+            }
         }
 
+        val saveButton: ImageButton = binding.savemeal
+        saveButton.setOnClickListener(){
+            savePressed()
+        }
 
         return root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
