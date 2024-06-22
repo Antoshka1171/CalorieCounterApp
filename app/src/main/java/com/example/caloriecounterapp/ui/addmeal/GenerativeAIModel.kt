@@ -15,28 +15,16 @@ class GenerativeAIModel {
         apiKey = com.example.caloriecounterapp.BuildConfig.apiKey
     )
 
-    public suspend fun ProvideCalorieEstimation(inputString: String) : String
+    public suspend fun ProvideCalorieEstimationNumber(inputString: String) : Pair<String, Int>
     {
-        val prompt = "Estimate calories in food " + inputString + ". If you don't know exact details about food make some assumptions. Describe the answer and assumptions in one sentence"
-        //val prompt = inputString + "say only the number of calories"
-        val response = generativeModel.generateContent(prompt)
-        //ProvideCalorieEstimationNumber(response.text.toString())
-
-        return response.text.toString();
-    }
-
-    public suspend fun ProvideCalorieEstimationNumber(inputString: String) : Int?
-    {
-        val prompt = "Estimate calories in food " + inputString + ". If you don't know exact details about food make some assumptions. provide the output in this format: X calories";
+        val prompt = "Estimate calories in food " + inputString + ". If you don't know exact details about food make some assumptions. Describe the answer and assumptions in one sentence.";
 
         //val prompt = inputString + ". Now say the integer number of calories."
         val response = generativeModel.generateContent(prompt);        //return response.text.toString();
-        //println(response.text.toString())
-        val delimiter = " "
-        val values: List<String> = response.text.toString().split(" ")
-        val numCal: Int = values[0].toInt()
-        //println(numCal)
-        return numCal;
+        val description = response.text.toString()
+        val calories = GetCaloriesUsingRegex(description)
+        return Pair(description, calories)
+
     }
 
 
@@ -49,7 +37,6 @@ class GenerativeAIModel {
             }
         )
 
-        //ProvideCalorieEstimationNumber(response.text.toString())
         val description = response.text.toString()
         val calories = GetCaloriesUsingRegex(description)
         return Pair(description, calories)

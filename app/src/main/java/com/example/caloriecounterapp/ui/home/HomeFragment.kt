@@ -1,15 +1,20 @@
 package com.example.caloriecounterapp.ui.home
 
-import android.R
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.caloriecounterapp.MealModel
+import com.example.caloriecounterapp.MainViewModel
 import com.example.caloriecounterapp.databinding.FragmentHomeBinding
+import java.time.DayOfWeek
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 
 class HomeFragment : Fragment() {
@@ -19,7 +24,10 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private val mainViewModel: MainViewModel by activityViewModels()
 
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,27 +39,22 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        val dayOfWeek = DayOfWeek.from(LocalDate.now()).toString()
+        val result = dayOfWeek.first().toString() + dayOfWeek.substring(1).lowercase()
+
+        binding.textViewDayOfWeek.text = result
+
+        val localDate = LocalDate.now()
+        val formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
+        val formattedDate = localDate.format(formatter)
+
+        binding.testViewDate.text = formattedDate.toString()
+
         val recyclerViewMeals = binding.recyclerViewMeals
 
-        // Here, we have created new array list and added data to it
-        val mealModelArrayList = ArrayList<MealModel>()
-        mealModelArrayList.add(MealModel("Breakfast", "Oatmeal", 300))
-        mealModelArrayList.add(MealModel("Lunch", "Burger", 500))
-        mealModelArrayList.add(MealModel("Breakfast", "Oatmeal", 300))
-        mealModelArrayList.add(MealModel("Lunch", "Burger", 500))
-        mealModelArrayList.add(MealModel("Breakfast", "Oatmeal", 300))
-        mealModelArrayList.add(MealModel("Lunch", "Burger", 500))
-        mealModelArrayList.add(MealModel("Breakfast", "Oatmeal", 300))
-        mealModelArrayList.add(MealModel("Lunch", "Burger", 500))
-        mealModelArrayList.add(MealModel("Breakfast", "Oatmeal", 300))
-        mealModelArrayList.add(MealModel("Lunch", "Burger", 500))
-        mealModelArrayList.add(MealModel("Breakfast", "Oatmeal", 300))
-        mealModelArrayList.add(MealModel("Lunch", "Burger", 500))
-        mealModelArrayList.add(MealModel("Breakfast", "Oatmeal", 300))
-        mealModelArrayList.add(MealModel("Lunch", "Burger", 500))
-
         // we are initializing our adapter class and passing our arraylist to it.
-        val mealAdapter  = MealAdapter(inflater.context, mealModelArrayList)
+        val mealAdapter  = MealAdapter(inflater.context, mainViewModel.mealList)
+        mainViewModel.readFromFile(inflater.context)
 
         // below line is for setting a layout manager for our recycler view.
         // here we are creating vertical list so we will provide orientation as vertical

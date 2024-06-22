@@ -1,20 +1,24 @@
 package com.example.caloriecounterapp.ui.addmeal
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import com.example.caloriecounterapp.MainViewModel
 import com.example.caloriecounterapp.MealModel
 import com.example.caloriecounterapp.R
 import com.example.caloriecounterapp.databinding.FragmentAddMealBinding
@@ -22,6 +26,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.io.IOException
+import java.io.OutputStreamWriter
 import kotlin.coroutines.CoroutineContext
 
 
@@ -39,6 +45,7 @@ class AddMealFragment : Fragment() , CoroutineScope {
     private val binding get() = _binding!!
 
     private val viewModel: AddMealViewModel by viewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     var REQUEST_CODE = 101;
     fun capturePhoto() {
@@ -54,11 +61,16 @@ class AddMealFragment : Fragment() , CoroutineScope {
 
     internal var photoBitmap : Bitmap? = null;
 
-    internal fun savePressed() {
+    internal fun savePressed(context: Context) {
         val mealType = binding.spinnerMealType.selectedItem
         println(mealType)
 
+        mainViewModel.mealList.add(mealModel)
+        mainViewModel.writeToFile(context)
+
+        mealModel.mealType = mealType.toString()
         val controller = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main)
+        //controller.fi
         controller.navigateUp()
     }
 
@@ -76,7 +88,6 @@ class AddMealFragment : Fragment() , CoroutineScope {
             }
         }
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -112,16 +123,19 @@ class AddMealFragment : Fragment() , CoroutineScope {
 
                 mealModel.mealDescription = editText.getText().toString()
 
-                val numberCal: Int? = aiModel.ProvideCalorieEstimationNumber(mealModel.mealDescription)
-                mealModel.mealCalories = numberCal!!
 
-                binding.textViewResponse.text = mealModel.mealCalories.toString()
+                val result = aiModel.ProvideCalorieEstimationNumber(mealModel.mealDescription)
+
+                mealModel.mealDescription = result.first
+                mealModel.mealCalories = result.second
+
+                binding.textViewResponse.text = mealModel.mealDescription.toString()
             }
         }
 
         val saveButton: ImageButton = binding.savemeal
         saveButton.setOnClickListener(){
-            savePressed()
+            savePressed(root.context)
         }
 
         return root
