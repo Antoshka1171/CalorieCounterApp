@@ -63,14 +63,14 @@ class AddMealFragment : Fragment() , CoroutineScope {
 
     internal fun savePressed(context: Context) {
         val mealType = binding.spinnerMealType.selectedItem
-        println(mealType)
+
+        mealModel.mealType = mealType.toString()
 
         mainViewModel.mealList.add(mealModel)
         mainViewModel.writeToFile(context)
 
-        mealModel.mealType = mealType.toString()
         val controller = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main)
-        //controller.fi
+
         controller.navigateUp()
     }
 
@@ -121,7 +121,8 @@ class AddMealFragment : Fragment() , CoroutineScope {
                 //val resultDescription = aiModel.ProvideCalorieEstimation(editText.getText().toString())
                 //binding.textViewResponse.text = resultDescription
 
-                mealModel.mealDescription = editText.getText().toString()
+                val description = editText.getText().toString();
+                mealModel.mealDescription = description
 
 
                 val result = aiModel.ProvideCalorieEstimationNumber(mealModel.mealDescription)

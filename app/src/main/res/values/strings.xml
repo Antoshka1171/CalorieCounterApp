@@ -7,7 +7,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
+    <string name="menu_calendar">Calendar</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="monday">Monday</string>
     <string name="sample_date">6/17/2024</string>
@@ -17,6 +17,7 @@
     <string name="calorie_count">300</string>
     <string name="my_meal_label">My Meal</string>
     <string name="meal_prompt">Describe your food or drink or take photo</string>
+
     <string-array name="meal_names_array">
         <item>Breakfast</item>
         <item>Lunch</item>
