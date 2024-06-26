@@ -1,10 +1,10 @@
-package com.example.caloriecounterapp.ui.gallery
+package com.example.caloriecounterapp.ui.Calendar
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class GalleryViewModel : ViewModel() {
+class CalednarViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is gallery Fragment"

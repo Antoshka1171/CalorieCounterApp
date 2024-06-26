@@ -48,12 +48,15 @@ class HomeFragment : Fragment() {
         val formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
         val formattedDate = localDate.format(formatter)
 
-        binding.testViewDate.text = formattedDate.toString()
+        binding.textViewDate.text = formattedDate.toString()
 
         val recyclerViewMeals = binding.recyclerViewMeals
 
         // we are initializing our adapter class and passing our arraylist to it.
-        val mealAdapter  = MealAdapter(inflater.context, mainViewModel.mealList)
+        if(mainViewModel.mealsHashMap[mainViewModel.date] == null)
+            mainViewModel.mealsHashMap[mainViewModel.date] = ArrayList()
+
+        val mealAdapter  = MealAdapter(inflater.context, mainViewModel.mealsHashMap[mainViewModel.date]!!)
         mainViewModel.readFromFile(inflater.context)
 
         // below line is for setting a layout manager for our recycler view.

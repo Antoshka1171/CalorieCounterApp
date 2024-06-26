@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.gallery.GalleryFragment">
+    tools:context=".ui.Calendar.CalendarFragment">
 
     <CalendarView
         android:id="@+id/calendarView2"
-        android:layout_width="0dp"
-        android:layout_height="350dp"
+        android:layout_width="404dp"
+        android:layout_height="313dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -27,4 +27,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/Calendar" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="332dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="8dp"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView2"
+        tools:layout_editor_absoluteX="39dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

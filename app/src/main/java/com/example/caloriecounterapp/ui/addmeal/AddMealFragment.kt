@@ -26,10 +26,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 import java.io.IOException
 import java.io.OutputStreamWriter
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import kotlin.coroutines.CoroutineContext
-
 
 class AddMealFragment : Fragment() , CoroutineScope {
 
@@ -61,12 +67,16 @@ class AddMealFragment : Fragment() , CoroutineScope {
 
     internal var photoBitmap : Bitmap? = null;
 
-    internal fun savePressed(context: Context) {
+    internal fun savePressed(context: Context, ) {
         val mealType = binding.spinnerMealType.selectedItem
 
         mealModel.mealType = mealType.toString()
 
-        mainViewModel.mealList.add(mealModel)
+        val date = mainViewModel.date
+        if(mainViewModel.mealsHashMap[date]==null)
+            mainViewModel.mealsHashMap[date] =  ArrayList()
+
+        mainViewModel.mealsHashMap[date]!!.add(mealModel)
         mainViewModel.writeToFile(context)
 
         val controller = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main)
@@ -126,7 +136,6 @@ class AddMealFragment : Fragment() , CoroutineScope {
 
 
                 val result = aiModel.ProvideCalorieEstimationNumber(mealModel.mealDescription)
-
                 mealModel.mealDescription = result.first
                 mealModel.mealCalories = result.second
 
