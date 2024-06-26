@@ -1,20 +1,15 @@
-package com.example.caloriecounterapp.ui.Calendar
+package com.example.caloriecounterapp.ui.gallery
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.caloriecounterapp.databinding.FragmentCalendarBinding
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.Calendar
 
-
-class CalendarFragment : Fragment() {
+class GalleryFragment : Fragment() {
 
     private var _binding: FragmentCalendarBinding? = null
 
@@ -22,28 +17,19 @@ class CalendarFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val calendarViewModelViewModel =
-            ViewModelProvider(this).get(CalendarViewModel::class.java)
+        val galleryViewModel =
+            ViewModelProvider(this).get(GalleryViewModel::class.java)
 
         _binding = FragmentCalendarBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val date: Calendar = Calendar.getInstance()
-
-        val localDate = LocalDate.now()
-        val formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
-        val formattedDate = localDate.format(formatter)
-
         return root
-
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
