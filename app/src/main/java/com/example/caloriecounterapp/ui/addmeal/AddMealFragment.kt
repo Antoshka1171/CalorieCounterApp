@@ -84,17 +84,36 @@ class AddMealFragment : Fragment() , CoroutineScope {
         controller.navigateUp()
     }
 
+    internal suspend fun revision(){
+        val result = aiModel.ProvideCalorieEstimationRevision(mealModel.mealDescription, binding.RevisionText.text.toString())
+        binding.textViewResponse.text = result.first
+
+        mealModel.mealDescription = result.first
+        mealModel.mealCalories = result.second
+
+        binding.RevisionText.text.clear()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE && data != null){
             photoBitmap = (data.extras?.get("data") as Bitmap)
             lifecycleScope.launch {
+
                 val result =  aiModel.ProvideCalorieEstimationFromPhoto(photoBitmap!!)
-                //binding.textViewResponse.text = result
-                //val numberCal = aiModel.ProvideCalorieEstimationFromPhoto(photoBitmap!!)
                 binding.textViewResponse.text = result.first
                 mealModel.mealDescription = result.first
                 mealModel.mealCalories = result.second
+
+                binding.RevisionText.visibility = View.VISIBLE
+                binding.RevisionButton.visibility = View.VISIBLE
+
+                binding.RevisionButton.setOnClickListener() {
+                    lifecycleScope.launch {
+                        revision()
+                    }
+                }
+
             }
         }
     }
@@ -105,13 +124,14 @@ class AddMealFragment : Fragment() , CoroutineScope {
         savedInstanceState: Bundle?
     ): View {
 
-        //val result = binding.spinnerMealType.getSelectedView().text.toString()
-
         val viewModel =
             ViewModelProvider(this).get(AddMealViewModel::class.java)
 
         _binding = FragmentAddMealBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        binding.RevisionText.visibility = View.INVISIBLE
+        binding.RevisionButton.visibility = View.INVISIBLE
 
         val textViewResponse = binding.textViewResponse
 
@@ -135,11 +155,21 @@ class AddMealFragment : Fragment() , CoroutineScope {
                 mealModel.mealDescription = description
 
 
-                val result = aiModel.ProvideCalorieEstimationNumber(mealModel.mealDescription)
+                val result = aiModel.ProvideCalorieEstimationDescription(mealModel.mealDescription)
                 mealModel.mealDescription = result.first
                 mealModel.mealCalories = result.second
 
-                binding.textViewResponse.text = mealModel.mealDescription.toString()
+                binding.RevisionText.visibility = View.VISIBLE
+                binding.RevisionButton.visibility = View.VISIBLE
+
+                binding.RevisionButton.setOnClickListener() {
+                    lifecycleScope.launch {
+                        revision()
+                    }
+                }
+
+                binding.textViewResponse.text = mealModel.mealDescription
+
             }
         }
 

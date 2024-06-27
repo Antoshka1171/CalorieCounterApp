@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
         if(mainViewModel.mealsHashMap[mainViewModel.date] == null)
             mainViewModel.mealsHashMap[mainViewModel.date] = ArrayList()
 
-        val mealAdapter  = MealAdapter(inflater.context, mainViewModel.mealsHashMap[mainViewModel.date]!!)
+        val mealAdapter  = MealAdapter(mainViewModel, inflater.context)
         mainViewModel.readFromFile(inflater.context)
 
         // below line is for setting a layout manager for our recycler view.

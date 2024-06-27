@@ -10,6 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <EditText
+            android:id="@+id/RevisionText"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Enter Revision "
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewResponse" />
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
@@ -39,9 +51,10 @@
 
         <Spinner
             android:id="@+id/spinnerMealType"
-            android:layout_width="386dp"
+            android:layout_width="0dp"
             android:layout_height="43dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:entries="@array/meal_names_array"
             android:theme="@style/Style.CalorieCounterApp.Spinner"
@@ -52,7 +65,7 @@
         <EditText
             android:id="@+id/editTextMealDescription"
             android:layout_width="340dp"
-            android:layout_height="47dp"
+            android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:ems="10"
@@ -63,8 +76,8 @@
 
         <TextView
             android:id="@+id/textViewResponse"
-            android:layout_width="388dp"
-            android:layout_height="344dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -76,10 +89,12 @@
 
         <ImageButton
             android:id="@+id/generateDescriptionButon"
-            android:layout_width="55dp"
+            android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:src="@android:drawable/checkbox_on_background"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editTextMealDescription"
             app:layout_constraintTop_toBottomOf="@+id/spinnerMealType" />
 
@@ -94,6 +109,17 @@
             app:layout_constraintBottom_toTopOf="@+id/imageButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/RevisionButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@android:drawable/checkbox_on_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/RevisionText"
+            app:layout_constraintTop_toBottomOf="@+id/textViewResponse" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

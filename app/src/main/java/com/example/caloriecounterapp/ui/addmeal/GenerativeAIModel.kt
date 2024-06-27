@@ -15,7 +15,7 @@ class GenerativeAIModel {
         apiKey = com.example.caloriecounterapp.BuildConfig.apiKey
     )
 
-    public suspend fun ProvideCalorieEstimationNumber(inputString: String) : Pair<String, Int>
+    public suspend fun ProvideCalorieEstimationDescription(inputString: String) : Pair<String, Int>
     {
         val prompt = "Estimate calories in food " + inputString + ". If you don't know exact details about food make some assumptions. Describe the answer and assumptions in one sentence.";
 
@@ -40,6 +40,19 @@ class GenerativeAIModel {
         val description = response.text.toString()
         val calories = GetCaloriesUsingRegex(description)
         return Pair(description, calories)
+    }
+
+    public suspend fun ProvideCalorieEstimationRevision(originalEstimation: String, inputString: String) : Pair<String, Int>
+    {
+        val prompt = "This is the original calorie estimation: " + originalEstimation +
+                ". Revise with this new information: " + inputString
+
+        //val prompt = inputString + ". Now say the integer number of calories."
+        val response = generativeModel.generateContent(prompt);        //return response.text.toString();
+        val description = response.text.toString()
+        val calories = GetCaloriesUsingRegex(description)
+        return Pair(description, calories)
+
     }
 
     internal fun GetCaloriesUsingRegex(text : String) : Int
