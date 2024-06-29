@@ -1,4 +1,4 @@
-package com.example.caloriecounterapp
+package com.antondeveloper.caloriecounterapp
 
 import android.content.Context
 import android.util.Log
@@ -82,6 +82,14 @@ class MainViewModel : ViewModel()  {
             mealsHashMap[testDate]!!.add(MealModel("Breakfast", "egg", 100))
             mealsHashMap[testDate]!!.add(MealModel("lunch", "burger", 400))
         }
+    }
+
+    internal fun GetCurrentDateMeals() : ArrayList<MealModel>?
+    {
+        if (mealsHashMap[date] == null)
+            mealsHashMap[date] = ArrayList()
+
+        return mealsHashMap[date]
     }
 
 }

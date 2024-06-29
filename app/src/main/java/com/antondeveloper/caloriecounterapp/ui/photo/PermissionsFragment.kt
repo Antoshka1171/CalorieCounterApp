@@ -1,4 +1,4 @@
-package com.example.caloriecounterapp.ui.photo
+package com.antondeveloper.caloriecounterapp.ui.photo
 
 import android.Manifest
 import android.content.Context
@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
-import com.example.caloriecounterapp.R
+import com.antondeveloper.caloriecounterapp.R
 
 private var PERMISSIONS_REQUIRED = arrayOf(Manifest.permission.CAMERA)
 

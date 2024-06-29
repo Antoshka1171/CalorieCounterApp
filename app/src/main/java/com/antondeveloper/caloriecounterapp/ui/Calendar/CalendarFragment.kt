@@ -1,4 +1,4 @@
-package com.example.caloriecounterapp.ui.Calendar
+package com.antondeveloper.caloriecounterapp.ui.Calendar
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,8 @@ import android.widget.CalendarView.OnDateChangeListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
-import com.example.caloriecounterapp.MainViewModel
-import com.example.caloriecounterapp.databinding.FragmentCalendarBinding
+import com.antondeveloper.caloriecounterapp.MainViewModel
+import com.antondeveloper.caloriecounterapp.databinding.FragmentCalendarBinding
 import kotlinx.datetime.LocalDate
 import java.time.DayOfWeek
 
@@ -29,7 +29,7 @@ class CalendarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val galleryViewModel =
-            ViewModelProvider(this).get(CalednarViewModel::class.java)
+            ViewModelProvider(this).get(com.antondeveloper.caloriecounterapp.ui.Calendar.CalednarViewModel::class.java)
 
         _binding = FragmentCalendarBinding.inflate(inflater, container, false)
         val root: View = binding.root

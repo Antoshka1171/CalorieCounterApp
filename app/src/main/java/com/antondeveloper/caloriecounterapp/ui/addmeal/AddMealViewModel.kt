@@ -1,4 +1,4 @@
-package com.example.caloriecounterapp.ui.addmeal
+package com.antondeveloper.caloriecounterapp.ui.addmeal
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

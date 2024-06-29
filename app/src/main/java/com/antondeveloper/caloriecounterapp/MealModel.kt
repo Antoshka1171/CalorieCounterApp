@@ -1,4 +1,4 @@
-package com.example.caloriecounterapp
+package com.antondeveloper.caloriecounterapp
 
 import kotlinx.serialization.Serializable
 

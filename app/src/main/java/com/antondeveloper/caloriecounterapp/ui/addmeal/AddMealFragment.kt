@@ -1,4 +1,4 @@
-package com.example.caloriecounterapp.ui.addmeal
+package com.antondeveloper.caloriecounterapp.ui.addmeal
 
 import android.app.Activity
 import android.content.Context
@@ -18,23 +18,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
-import com.example.caloriecounterapp.MainViewModel
-import com.example.caloriecounterapp.MealModel
-import com.example.caloriecounterapp.R
-import com.example.caloriecounterapp.databinding.FragmentAddMealBinding
+import com.antondeveloper.caloriecounterapp.MainViewModel
+import com.antondeveloper.caloriecounterapp.MealModel
+import com.antondeveloper.caloriecounterapp.R
+import com.antondeveloper.caloriecounterapp.databinding.FragmentAddMealBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.Serializer
-import kotlinx.serialization.encoding.Decoder
-import kotlinx.serialization.encoding.Encoder
-import java.io.IOException
-import java.io.OutputStreamWriter
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 import kotlin.coroutines.CoroutineContext
 
 class AddMealFragment : Fragment() , CoroutineScope {

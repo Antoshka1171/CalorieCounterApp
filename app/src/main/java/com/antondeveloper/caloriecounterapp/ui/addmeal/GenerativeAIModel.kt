@@ -1,6 +1,7 @@
-package com.example.caloriecounterapp.ui.addmeal
+package com.antondeveloper.caloriecounterapp.ui.addmeal
 
 import android.graphics.Bitmap
+import com.antondeveloper.caloriecounterapp.BuildConfig
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
 
@@ -12,7 +13,7 @@ class GenerativeAIModel {
         // The Gemini 1.5 models are versatile and work with most use cases
         modelName = "gemini-1.5-flash",
         // Access your API key as a Build Configuration variable (see "Set up your API key" above)
-        apiKey = com.example.caloriecounterapp.BuildConfig.apiKey
+        apiKey = BuildConfig.apiKey
     )
 
     public suspend fun ProvideCalorieEstimationDescription(inputString: String) : Pair<String, Int>

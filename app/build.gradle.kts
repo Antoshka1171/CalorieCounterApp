@@ -1,3 +1,4 @@
+import com.android.build.api.dsl.Packaging
 import java.util.Properties
 
 plugins {
@@ -7,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.caloriecounterapp"
+    namespace = "com.antondeveloper.caloriecounterapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.caloriecounterapp"
+        applicationId = "com.antondeveloper.caloriecounterapp"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -44,6 +45,10 @@ android {
         viewBinding = true
         buildConfig = true
     }
+
+    packagingOptions{
+        resources.excludes.add("META-INF/*")
+    }
 }
 
 dependencies {
@@ -64,6 +69,9 @@ dependencies {
     implementation(libs.org.jetbrains.kotlin.plugin.serialization.gradle.plugin)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.datetime)
+    implementation(libs.api.common)
+    implementation(libs.google.auth.library.oauth2.http)
+    implementation(libs.play.services.drive)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

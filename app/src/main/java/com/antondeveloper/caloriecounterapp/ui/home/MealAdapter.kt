@@ -1,4 +1,4 @@
-package com.example.caloriecounterapp.ui.home
+package com.antondeveloper.caloriecounterapp.ui.home
 
 import android.app.Activity
 import android.content.Context
@@ -12,9 +12,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
-import com.example.caloriecounterapp.MainViewModel
-import com.example.caloriecounterapp.MealModel
-import com.example.caloriecounterapp.R
+import com.antondeveloper.caloriecounterapp.MainViewModel
+import com.antondeveloper.caloriecounterapp.MealModel
+import com.antondeveloper.caloriecounterapp.R
 
 class MealAdapter(private val mainViewModel: MainViewModel, private val context: Context) :
     RecyclerView.Adapter<MealAdapter.ViewHolder>() {
@@ -33,7 +33,7 @@ class MealAdapter(private val mainViewModel: MainViewModel, private val context:
         holder.mealCalories.setText(model.mealCalories.toString())
 
         holder.deleteButton.setOnClickListener(){
-            mainViewModel.mealsHashMap[mainViewModel.date]!!.removeAt(position)
+            mainViewModel.GetCurrentDateMeals()!!.removeAt(position)
             notifyItemRemoved(position)
             mainViewModel.writeToFile(context)
         }
@@ -41,7 +41,7 @@ class MealAdapter(private val mainViewModel: MainViewModel, private val context:
 
     override fun getItemCount(): Int {
         // this method is used for showing number of card items in recycler view.
-        return mainViewModel.mealsHashMap[mainViewModel.date]!!.size
+        return mainViewModel.GetCurrentDateMeals()!!.size
     }
 
     // View holder class for initializing of your views such as TextView and Imageview.
