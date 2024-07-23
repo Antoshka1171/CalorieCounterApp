@@ -49,6 +49,8 @@ android {
     packagingOptions{
         resources.excludes.add("META-INF/*")
     }
+
+
 }
 
 dependencies {
@@ -75,4 +77,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }

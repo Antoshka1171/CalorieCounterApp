@@ -76,6 +76,10 @@ class AddMealFragment : Fragment() , CoroutineScope {
     }
 
     internal suspend fun revision(){
+        if(getContext()?.let { aiModel.isOnline(it) } == false){
+            binding.textViewResponse.text = "No Network Connectivity"
+            return
+        }
         val result = aiModel.ProvideCalorieEstimationRevision(mealModel.mealDescription, binding.RevisionText.text.toString())
         binding.textViewResponse.text = result.first
 
@@ -86,6 +90,10 @@ class AddMealFragment : Fragment() , CoroutineScope {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(getContext()?.let { aiModel.isOnline(it) } == false){
+            binding.textViewResponse.text = "No Network Connectivity"
+            return
+        }
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE && data != null){
             photoBitmap = (data.extras?.get("data") as Bitmap)
@@ -138,29 +146,36 @@ class AddMealFragment : Fragment() , CoroutineScope {
         val descriptionButton: ImageButton = binding.generateDescriptionButon
 
         descriptionButton.setOnClickListener {
-            lifecycleScope.launch {
-                //val resultDescription = aiModel.ProvideCalorieEstimation(editText.getText().toString())
-                //binding.textViewResponse.text = resultDescription
 
-                val description = editText.getText().toString();
-                mealModel.mealDescription = description
+            if(getContext()?.let { aiModel.isOnline(it) } == false){
+                binding.textViewResponse.text = "No Network Connectivity"
+            }
+            else {
+                lifecycleScope.launch {
+                    //val resultDescription = aiModel.ProvideCalorieEstimation(editText.getText().toString())
+                    //binding.textViewResponse.text = resultDescription
+
+                    val description = editText.getText().toString();
+                    mealModel.mealDescription = description
 
 
-                val result = aiModel.ProvideCalorieEstimationDescription(mealModel.mealDescription)
-                mealModel.mealDescription = result.first
-                mealModel.mealCalories = result.second
+                    val result =
+                        aiModel.ProvideCalorieEstimationDescription(mealModel.mealDescription)
+                    mealModel.mealDescription = result.first
+                    mealModel.mealCalories = result.second
 
-                binding.RevisionText.visibility = View.VISIBLE
-                binding.RevisionButton.visibility = View.VISIBLE
+                    binding.RevisionText.visibility = View.VISIBLE
+                    binding.RevisionButton.visibility = View.VISIBLE
 
-                binding.RevisionButton.setOnClickListener() {
-                    lifecycleScope.launch {
-                        revision()
+                    binding.RevisionButton.setOnClickListener() {
+                        lifecycleScope.launch {
+                            revision()
+                        }
                     }
+
+                    binding.textViewResponse.text = mealModel.mealDescription
+
                 }
-
-                binding.textViewResponse.text = mealModel.mealDescription
-
             }
         }
 
