@@ -1,4 +1,4 @@
-package com.antondeveloper.caloriecounterapp
+package com.antondeveloper.caloriecounterapp.ui.home
 
 import kotlinx.serialization.Serializable
 

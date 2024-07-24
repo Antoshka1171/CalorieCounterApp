@@ -74,6 +74,7 @@ dependencies {
     implementation(libs.api.common)
     implementation(libs.google.auth.library.oauth2.http)
     implementation(libs.play.services.drive)
+    implementation(libs.cardview.v7)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -1,19 +1,13 @@
 package com.antondeveloper.caloriecounterapp.ui.home
 
-import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.antondeveloper.caloriecounterapp.MainViewModel
-import com.antondeveloper.caloriecounterapp.MealModel
 import com.antondeveloper.caloriecounterapp.R
 
 class MealAdapter(private val mainViewModel: MainViewModel, private val context: Context) :

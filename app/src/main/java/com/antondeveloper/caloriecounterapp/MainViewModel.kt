@@ -3,15 +3,14 @@ package com.antondeveloper.caloriecounterapp
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.antondeveloper.caloriecounterapp.ui.home.MealModel
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.toKotlinLocalDate
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.Serializer
-import kotlinx.serialization.UseSerializers
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor

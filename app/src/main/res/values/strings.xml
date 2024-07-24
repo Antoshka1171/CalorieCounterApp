@@ -17,6 +17,7 @@
     <string name="calorie_count">300</string>
     <string name="my_meal_label">My Meal</string>
     <string name="meal_prompt">Describe your food or drink or take photo</string>
+    <string name="total_calories">Total Calories: </string>
 
     <string-array name="meal_names_array">
         <item>Breakfast</item>

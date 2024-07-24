@@ -50,7 +50,16 @@ class HomeFragment : Fragment() {
 
         binding.textViewDate.text = formattedDate.toString()
 
+
+
         val recyclerViewMeals = binding.recyclerViewMeals
+
+        if(mainViewModel.mealsHashMap[mainViewModel.date] != null) {
+            val totalCaloriesForDate = mainViewModel.mealsHashMap[mainViewModel.date]!!.sumBy { it.mealCalories }
+            binding.TotalCaloriesNumber.text = totalCaloriesForDate.toString()
+        } else{
+            binding.TotalCaloriesNumber.text = "0"
+        }
 
         // we are initializing our adapter class and passing our arraylist to it.
         if(mainViewModel.mealsHashMap[mainViewModel.date] == null)

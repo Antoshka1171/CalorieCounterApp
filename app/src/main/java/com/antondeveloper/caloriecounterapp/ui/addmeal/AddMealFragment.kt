@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.antondeveloper.caloriecounterapp.MainViewModel
-import com.antondeveloper.caloriecounterapp.MealModel
+import com.antondeveloper.caloriecounterapp.ui.home.MealModel
 import com.antondeveloper.caloriecounterapp.R
 import com.antondeveloper.caloriecounterapp.databinding.FragmentAddMealBinding
 import kotlinx.coroutines.CoroutineScope

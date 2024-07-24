@@ -25,6 +25,7 @@ kotlinxDatetime = "0.6.0"
 apiCommon = "2.33.0"
 googleAuthLibraryOauth2Http = "1.23.0"
 playServicesDrive = "17.0.0"
+cardviewV7 = "28.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -50,6 +51,7 @@ kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime",
 api-common = { group = "com.google.api", name = "api-common", version.ref = "apiCommon" }
 google-auth-library-oauth2-http = { group = "com.google.auth", name = "google-auth-library-oauth2-http", version.ref = "googleAuthLibraryOauth2Http" }
 play-services-drive = { group = "com.google.android.gms", name = "play-services-drive", version.ref = "playServicesDrive" }
+cardview-v7 = { group = "com.android.support", name = "cardview-v7", version.ref = "cardviewV7" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

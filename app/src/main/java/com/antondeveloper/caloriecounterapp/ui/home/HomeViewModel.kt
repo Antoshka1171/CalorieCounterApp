@@ -3,7 +3,6 @@ package com.antondeveloper.caloriecounterapp.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.antondeveloper.caloriecounterapp.MealModel
 
 class HomeViewModel : ViewModel() {
 
