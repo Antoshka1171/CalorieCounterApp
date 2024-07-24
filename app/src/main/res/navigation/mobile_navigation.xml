@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/nav_add_meal"
         android:name="com.antondeveloper.caloriecounterapp.ui.addmeal.AddMealFragment"
-        android:label=""
+        android:label="Add Meal"
         tools:layout="@layout/fragment_add_meal" >
         <action
             android:id="@+id/action_nav_add_meal_to_nav_home"

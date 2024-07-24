@@ -9,12 +9,18 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.antondeveloper.caloriecounterapp.MainViewModel
+import com.antondeveloper.caloriecounterapp.R
+import com.antondeveloper.caloriecounterapp.R.*
 import com.antondeveloper.caloriecounterapp.databinding.FragmentHomeBinding
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+
 
 
 class HomeFragment : Fragment() {
@@ -50,7 +56,10 @@ class HomeFragment : Fragment() {
 
         binding.textViewDate.text = formattedDate.toString()
 
-
+        binding.addMeal.setOnClickListener { _ ->
+            val navController = findNavController(requireActivity(), R.id.nav_host_fragment_content_main)
+            navController.navigate(R.id.action_nav_home_to_nav_add_meal)
+        }
 
         val recyclerViewMeals = binding.recyclerViewMeals
 
