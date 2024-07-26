@@ -28,7 +28,7 @@ class MealAdapter(private val mainViewModel: MainViewModel, private val context:
 
         holder.deleteButton.setOnClickListener(){
             mainViewModel.GetCurrentDateMeals()!!.removeAt(position)
-            notifyItemRemoved(position)
+            notifyDataSetChanged()
             mainViewModel.writeToFile(context)
         }
     }

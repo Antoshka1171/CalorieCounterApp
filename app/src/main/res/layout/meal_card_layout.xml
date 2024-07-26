@@ -27,12 +27,13 @@
 
         <TextView
             android:id="@+id/textViewMealDescription"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:text="@string/meal_description"
             android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewMealName" />
 
@@ -63,9 +64,10 @@
             android:id="@+id/deleteButton"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/textViewCalorieCount"
-            app:layout_constraintTop_toTopOf="@+id/textViewCalorieCount"
-            app:srcCompat="@android:drawable/ic_menu_delete" />
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_menu_trashcan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewCalorieCount" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
